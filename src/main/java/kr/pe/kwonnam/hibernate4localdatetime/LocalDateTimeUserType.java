@@ -107,7 +107,7 @@ public class LocalDateTimeUserType implements EnhancedUserType, Serializable {
 
     @Override
     public Object replace(Object original, Object target, Object owner) throws HibernateException {
-        // no need to replicate immutable objects
+        // no need to replace immutable objects
         return original;
     }
 
