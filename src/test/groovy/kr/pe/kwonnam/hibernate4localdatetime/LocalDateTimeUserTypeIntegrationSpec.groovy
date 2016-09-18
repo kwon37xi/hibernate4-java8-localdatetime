@@ -1,7 +1,7 @@
 package kr.pe.kwonnam.hibernate4localdatetime
 
 import groovy.sql.Sql
-import kr.pe.kwonnam.hibernate4localdatetime.entities.Article
+import kr.pe.kwonnam.hibernate4localdatetime.entities.LocalDateTimeEntity
 import org.hibernate.jdbc.Work
 
 import java.sql.Connection
@@ -11,32 +11,28 @@ class LocalDateTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegrationSp
 
     def "save and get"() {
         given:
-        final LocalDateTime expectedLocalDateTime = LocalDateTime.of(2016, 9, 5, 15, 40, 21, 123456789)
-
-        final Article article = new Article()
-        article.title = 'article title'
-        article.content = 'article content'
-        article.createdAt = expectedLocalDateTime
-        article.updatedAt = null
+        final LocalDateTimeEntity entity = new LocalDateTimeEntity()
+        entity.title = 'entity title'
+        entity.createdAt = LocalDateTime.of(2016, 9, 5, 15, 40, 21, 123456789)
+        entity.updatedAt = null
 
         when:
-        Long id = session.save(article)
-        session.evict(article)
-        Article readFromDb = session.get(Article, 1L)
+        Long id = session.save(entity)
+        session.evict(entity)
+        LocalDateTimeEntity readFromDb = session.get(LocalDateTimeEntity, 1L)
 
         then:
         assert id == 1L
         session.doWork({ Connection con ->
             Sql sql = new Sql(con)
-            def row = sql.firstRow("select * from articles")
+            def row = sql.firstRow("select * from local_date_time_entities")
             println "raw query createdAt result ${row.createdAt}" // check for nano second truncated
         } as Work)
 
         readFromDb.id == 1L
-        readFromDb.createdAt != expectedLocalDateTime
+        readFromDb.createdAt !=  LocalDateTime.of(2016, 9, 5, 15, 40, 21, 123456789)
         readFromDb.createdAt == LocalDateTime.of(2016, 9, 5, 15, 40, 21, 123000000) // nanoseconds truncated
         readFromDb.updatedAt == null
-        readFromDb.title == article.title
-        readFromDb.content == article.content
+        readFromDb.title == entity.title
     }
 }

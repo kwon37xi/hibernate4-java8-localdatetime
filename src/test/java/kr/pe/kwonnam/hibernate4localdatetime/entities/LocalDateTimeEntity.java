@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "articles")
-public class Article {
+@Table(name = "local_date_time_entities")
+public class LocalDateTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -15,10 +15,6 @@ public class Article {
 
     @Column(name = "title", length = 255, nullable = false)
     private String title;
-
-    @Lob
-    @Column(name = "content", nullable = false)
-    private String content;
 
     @Type(type = "kr.pe.kwonnam.hibernate4localdatetime.LocalDateTimeUserType")
     @Column(name = "createdAt", nullable = false)
@@ -42,14 +38,6 @@ public class Article {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public LocalDateTime getCreatedAt() {

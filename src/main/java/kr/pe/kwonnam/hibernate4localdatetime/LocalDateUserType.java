@@ -10,12 +10,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Date;
 import java.time.LocalDate;
-import java.sql.Date;
+import java.util.Objects;
 
+/**
+ * <p>LocalDate Hibernate User Type.</p>
+ *
+ * @see LocalDate
+ * @see Date
+ */
 public class LocalDateUserType implements EnhancedUserType, Serializable {
-    private static final CoreMessageLogger LOG = Logger.getMessageLogger(CoreMessageLogger.class, LocalDateUserType.class.getName());
-
     private static final int SQL_TYPE = Types.DATE;
 
     @Override
@@ -40,41 +45,24 @@ public class LocalDateUserType implements EnhancedUserType, Serializable {
 
     @Override
     public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner) throws HibernateException, SQLException {
-        final String columName = names[0];
-
         Date date = (Date) StandardBasicTypes.DATE.nullSafeGet(rs, names, session, owner);
 
         if (date == null) {
-            if (LOG.isTraceEnabled()) {
-                LOG.tracev("Returning null as column {0}", columName);
-            }
             return null;
         }
 
-        LocalDate localDate = LocalDate.ofInstant(date.toInstant(), ZoneId.systemDefault());
-
-        if (LOG.isTraceEnabled()) {
-            LOG.tracev("Returning '{0}' as column {1}", localDate, columName);
-        }
-        return localDate;
+        return new java.sql.Date(date.getTime()).toLocalDate();
     }
 
     @Override
     public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException {
         if (value == null) {
-            if (LOG.isTraceEnabled()) {
-                LOG.tracev("Binding null to parameter: {0}", index);
-            }
             StandardBasicTypes.DATE.nullSafeSet(st, null, index, session);
             return;
         }
 
         LocalDate localDate = (LocalDate) value;
-        Date date = Date.from(localDate.atZone(ZoneId.systemDefault()).toInstant());
-
-        if (LOG.isTraceEnabled()) {
-            LOG.tracev("Binding '{0}' to parameter: {1}", date, index);
-        }
+        Date date = new Date(java.sql.Date.valueOf(localDate).getTime());
 
         StandardBasicTypes.DATE.nullSafeSet(st, date, index, session);
     }
