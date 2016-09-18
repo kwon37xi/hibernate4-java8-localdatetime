@@ -2,22 +2,52 @@ package kr.pe.kwonnam.hibernate4localdatetime
 
 import kr.pe.kwonnam.hibernate4localdatetime.entities.Article
 
+import java.sql.Types
 import java.time.LocalDateTime
 
-class LocalDateTimeUserTypeSpec extends AbstractUserTypeSpec {
-    def "save"() {
-        given:
-        def session = sf.openSession()
+class LocalDateTimeUserTypeSpec extends AbstractUserTypeIntegrationSpec {
 
-        Article article = new Article()
+    LocalDateTimeUserType localDateTimeUserType = new LocalDateTimeUserType()
+
+    def "save and get"() {
+        given:
+        final LocalDateTime expectedLocalDateTime = LocalDateTime.of(2016, 9, 5, 15, 40, 21)
+
+        final Article article = new Article()
         article.title = 'article title'
         article.content = 'article content'
-        article.createdAt = LocalDateTime.of(2016, 9, 5, 15, 40, 21, 123)
+        article.createdAt = expectedLocalDateTime
+        article.updatedAt = null
 
         when:
-        session.save(article)
+        Long id = session.save(article)
+        session.evict(article)
+        Article readFromDb = session.get(Article, 1L)
 
         then:
-        true
+        assert id == 1L
+
+        readFromDb.id == 1L
+        readFromDb.createdAt == expectedLocalDateTime
+        readFromDb.updatedAt == null
+        readFromDb.title == article.title
+        readFromDb.content == article.content
+    }
+
+    def "sqlTypes"() {
+        when:
+        int[] sqlTypes = localDateTimeUserType.sqlTypes()
+
+        then:
+        sqlTypes.length == 1
+        sqlTypes[0] == Types.TIMESTAMP
+    }
+
+    def "returnedClass"() {
+        when:
+        Class clazz = localDateTimeUserType.returnedClass()
+
+        then:
+        clazz == LocalDateTime
     }
 }

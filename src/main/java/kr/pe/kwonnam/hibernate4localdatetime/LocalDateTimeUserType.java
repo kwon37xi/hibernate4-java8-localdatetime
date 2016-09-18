@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class LocalDateTimeUserType implements EnhancedUserType, Serializable {
-    private static final CoreMessageLogger LOG = Logger.getMessageLogger(CoreMessageLogger.class, LocalDateTimeUserType.class.getName());
+    private static final CoreMessageLogger LOG = Logger.getMessageLogger(CoreMessageLogger.class, "org.hibernate.type");
 
     private static final int SQL_TYPE = Types.TIMESTAMP;
 
