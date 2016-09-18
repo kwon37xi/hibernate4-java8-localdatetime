@@ -2,7 +2,8 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 
 ext {
-    javaVersion='1.8'
+    javaVersion = '1.8'
+    hibernateVersion = '4.2.0.Final'
 }
 
 sourceCompatibility = javaVersion
@@ -16,8 +17,9 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.0.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion
     testCompile 'org.slf4j:slf4j-api:1.7.13'
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.192'
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
     testCompile group: 'cglib', name: 'cglib-nodep', version: '3.2.4'
 }
