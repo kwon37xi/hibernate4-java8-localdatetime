@@ -21,11 +21,11 @@ public class Article {
     private String content;
 
     @Type(type = "kr.pe.kwonnam.hibernate4localdatetime.LocalDateTimeUserType")
-    @Column(name = "createdAt", nullable = false, columnDefinition = "datetime")
+    @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt;
 
     @Type(type = "kr.pe.kwonnam.hibernate4localdatetime.LocalDateTimeUserType")
-    @Column(name = "updatedAt", nullable = true, columnDefinition = "datetime")
+    @Column(name = "updatedAt", nullable = true)
     private LocalDateTime updatedAt;
 
     public Long getId() {
