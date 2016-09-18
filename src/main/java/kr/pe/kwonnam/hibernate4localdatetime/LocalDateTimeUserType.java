@@ -19,7 +19,7 @@ import java.util.Objects;
 /**
  * <p>LocalDateTime Hibernate User Type.</p>
  * <p>
- *     <em>Beware LocalDateTime/Instant support nano seconds, but java.util.Date only supports milliseconds.</em>
+ * <em>Beware LocalDateTime/Instant support nano seconds, but java.util.Date only supports milliseconds.</em>
  * </p>
  *
  * @see LocalDateTime
@@ -32,7 +32,7 @@ public class LocalDateTimeUserType implements EnhancedUserType, Serializable {
 
     @Override
     public int[] sqlTypes() {
-        return new int[] { SQL_TYPE };
+        return new int[]{SQL_TYPE};
     }
 
     @Override
@@ -55,7 +55,7 @@ public class LocalDateTimeUserType implements EnhancedUserType, Serializable {
         Date timestamp = (Date) StandardBasicTypes.TIMESTAMP.nullSafeGet(rs, names, session, owner);
 
         if (timestamp == null) {
-             return null;
+            return null;
         }
 
         LocalDateTime localDateTime = LocalDateTime.ofInstant(timestamp.toInstant(), ZoneId.systemDefault());
@@ -65,7 +65,7 @@ public class LocalDateTimeUserType implements EnhancedUserType, Serializable {
     @Override
     public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException {
         if (value == null) {
-              StandardBasicTypes.TIMESTAMP.nullSafeSet(st, null, index, session);
+            StandardBasicTypes.TIMESTAMP.nullSafeSet(st, null, index, session);
             return;
         }
 
