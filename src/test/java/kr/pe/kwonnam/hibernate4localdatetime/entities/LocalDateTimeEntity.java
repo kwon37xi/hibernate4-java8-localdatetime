@@ -17,11 +17,11 @@ public class LocalDateTimeEntity {
     private String title;
 
     @Type(type = "kr.pe.kwonnam.hibernate4localdatetime.LocalDateTimeUserType")
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
     @Type(type = "kr.pe.kwonnam.hibernate4localdatetime.LocalDateTimeUserType")
-    @Column(name = "updatedAt", nullable = true)
+    @Column(name = "updated_at", nullable = true)
     private LocalDateTime updatedAt;
 
     public Long getId() {
