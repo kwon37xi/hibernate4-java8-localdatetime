@@ -17,10 +17,12 @@ import java.util.Objects;
 import java.util.Properties;
 
 public class StringLocalDateTimeUserType implements EnhancedUserType, ParameterizedType, Serializable {
+    /** Date format patter paramameter name **/
     public static final String PARAM_PATTERN = "pattern";
 
     public static final int SQL_TYPE = Types.VARCHAR;
 
+    /** Date format pattern **/
     private String pattern;
 
     private DateTimeFormatter formatter;
@@ -35,6 +37,10 @@ public class StringLocalDateTimeUserType implements EnhancedUserType, Parameteri
 
     @Override
     public void setParameterValues(Properties parameters) {
+        if (parameters == null) {
+            throw new IllegalArgumentException("parameters must not be null.");
+        }
+
         pattern = parameters.getProperty(PARAM_PATTERN, null);
 
         if (pattern == null) {

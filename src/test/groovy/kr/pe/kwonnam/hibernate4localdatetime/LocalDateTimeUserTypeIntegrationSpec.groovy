@@ -22,11 +22,11 @@ class LocalDateTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegrationSp
         LocalDateTimeEntity readFromDb = session.get(LocalDateTimeEntity, 1L)
 
         then:
-        assert id == 1L
+        id == 1L
         session.doWork({ Connection con ->
             Sql sql = new Sql(con)
             def row = sql.firstRow("select * from local_date_time_entities")
-            println "raw query createdAt result ${row.createdAt}" // check for nano second truncated
+            println "raw query createdAt result ${row.created_at}" // check for nano second truncated
         } as Work)
 
         readFromDb.id == 1L

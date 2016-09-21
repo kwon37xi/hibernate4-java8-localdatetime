@@ -21,7 +21,7 @@ class LocalDateUserTypeIntegrationSpec extends AbstractUserTypeIntegrationSpec {
         LocalDateEntity readFromDb = session.get(LocalDateEntity, 1L)
 
         then:
-        assert id == 1L
+        id == 1L
         readFromDb.id == 1L
         readFromDb.createdDate == LocalDate.of(2016, Month.SEPTEMBER, 18);
         readFromDb.updatedDate == null

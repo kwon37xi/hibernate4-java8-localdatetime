@@ -11,6 +11,19 @@ class StringLocalDateTimeUserTypeSpec extends Specification {
 
     Properties parameters = new Properties()
 
+    def "setParameterValues parameters=null"() {
+        given:
+        parameters = null;
+
+        when:
+        stringLocalDateTimeUserType.setParameterValues(parameters)
+
+        then:
+        IllegalArgumentException ex = thrown()
+        ex.getMessage() == 'parameters must not be null.'
+
+    }
+
     def "setParameterValues format=null"() {
         given:
         parameters.remove(StringLocalDateTimeUserType.PARAM_PATTERN)

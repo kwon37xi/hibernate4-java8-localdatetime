@@ -3,6 +3,7 @@ package kr.pe.kwonnam.hibernate4localdatetime
 import kr.pe.kwonnam.hibernate4localdatetime.entities.LocalDateEntity
 import kr.pe.kwonnam.hibernate4localdatetime.entities.LocalDateTimeEntity
 import kr.pe.kwonnam.hibernate4localdatetime.entities.LocalTimeEntity
+import kr.pe.kwonnam.hibernate4localdatetime.entities.StringLocalDateTimeEntity
 import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.hibernate.cfg.Configuration
@@ -26,6 +27,7 @@ abstract class AbstractUserTypeIntegrationSpec extends Specification {
         configuration.addAnnotatedClass(LocalDateTimeEntity)
         configuration.addAnnotatedClass(LocalDateEntity)
         configuration.addAnnotatedClass(LocalTimeEntity)
+        configuration.addAnnotatedClass(StringLocalDateTimeEntity)
 
         configuration.setProperty("hibernate.show_sql", "false")
         configuration.setProperty("hibernate.format_sql", "true")

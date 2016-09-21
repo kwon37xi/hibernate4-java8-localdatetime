@@ -19,7 +19,7 @@ class LocalTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegrationSpec {
         LocalTimeEntity readFromDb = session.get(LocalTimeEntity, 1L)
 
         then:
-        assert id == 1L
+        id == 1L
         readFromDb.id == 1L
         readFromDb.createdTime == LocalTime.of(13, 21, 59);
         readFromDb.updatedTime == null
