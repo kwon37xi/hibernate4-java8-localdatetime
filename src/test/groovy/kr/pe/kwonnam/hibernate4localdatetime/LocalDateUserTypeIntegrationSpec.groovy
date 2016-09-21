@@ -1,12 +1,16 @@
 package kr.pe.kwonnam.hibernate4localdatetime
 
 import kr.pe.kwonnam.hibernate4localdatetime.entities.LocalDateEntity
+import org.hibernate.cfg.Configuration
 
 import java.time.LocalDate
 import java.time.Month
 
-
 class LocalDateUserTypeIntegrationSpec extends AbstractUserTypeIntegrationSpec {
+    @Override
+    void addAnnotatedClass(Configuration configuration) {
+        configuration.addAnnotatedClass(LocalDateEntity)
+    }
 
     def "save and get"() {
         given:

@@ -16,8 +16,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.Properties;
 
+/**
+ * <p>StringLocalDateTime Hibernate User Type.</p>
+ * <p>Use this user type for saving date/time data into a varchar(string) column.</p>
+ *
+ * @see LocalDateTime
+ */
 public class StringLocalDateTimeUserType implements EnhancedUserType, ParameterizedType, Serializable {
-    /** Date format patter paramameter name **/
+    /** Date format pattern parameter name **/
     public static final String PARAM_PATTERN = "pattern";
 
     public static final int SQL_TYPE = Types.VARCHAR;

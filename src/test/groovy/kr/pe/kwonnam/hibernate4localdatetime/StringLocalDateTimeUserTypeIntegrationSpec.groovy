@@ -2,13 +2,17 @@ package kr.pe.kwonnam.hibernate4localdatetime
 
 import groovy.sql.Sql
 import kr.pe.kwonnam.hibernate4localdatetime.entities.StringLocalDateTimeEntity
+import org.hibernate.cfg.Configuration
 import org.hibernate.jdbc.Work
 
 import java.sql.Connection
 import java.time.LocalDateTime
 
-
 class StringLocalDateTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegrationSpec {
+    @Override
+    void addAnnotatedClass(Configuration configuration) {
+        configuration.addAnnotatedClass(StringLocalDateTimeEntity)
+    }
 
     def "save and get"() {
         given:
@@ -26,7 +30,7 @@ class StringLocalDateTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegra
         then:
         id == 1L
 
-        session.doWork( { Connection con ->
+        session.doWork({ Connection con ->
             Sql sql = new Sql(con)
             sql.with {
                 def row = sql.firstRow("select created_at, updated_at from string_local_date_time_entities where id = 1")
@@ -43,7 +47,7 @@ class StringLocalDateTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegra
 
     def "get null or empty String"() {
         given:
-        session.doWork( { Connection con ->
+        session.doWork({ Connection con ->
             Sql sql = new Sql(con)
             sql.with {
                 sql.executeInsert("""

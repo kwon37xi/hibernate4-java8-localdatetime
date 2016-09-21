@@ -2,12 +2,18 @@ package kr.pe.kwonnam.hibernate4localdatetime
 
 import groovy.sql.Sql
 import kr.pe.kwonnam.hibernate4localdatetime.entities.LocalDateTimeEntity
+import org.hibernate.cfg.Configuration
 import org.hibernate.jdbc.Work
 
 import java.sql.Connection
 import java.time.LocalDateTime
 
 class LocalDateTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegrationSpec {
+
+    @Override
+    void addAnnotatedClass(Configuration configuration) {
+        configuration.addAnnotatedClass(LocalDateTimeEntity)
+    }
 
     def "save and get"() {
         given:

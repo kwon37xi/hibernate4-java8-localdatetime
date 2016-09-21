@@ -24,10 +24,7 @@ abstract class AbstractUserTypeIntegrationSpec extends Specification {
     void setup() {
         configuration = new Configuration();
 
-        configuration.addAnnotatedClass(LocalDateTimeEntity)
-        configuration.addAnnotatedClass(LocalDateEntity)
-        configuration.addAnnotatedClass(LocalTimeEntity)
-        configuration.addAnnotatedClass(StringLocalDateTimeEntity)
+        addAnnotatedClass(configuration)
 
         configuration.setProperty("hibernate.show_sql", "false")
         configuration.setProperty("hibernate.format_sql", "true")
@@ -46,6 +43,8 @@ abstract class AbstractUserTypeIntegrationSpec extends Specification {
 
         session = sf.openSession()
     }
+
+    abstract void addAnnotatedClass(Configuration configuration);
 
     void cleanup() {
         session.close()
