@@ -5,7 +5,7 @@ import spock.lang.Specification
 import java.sql.Types
 import java.time.LocalDate
 
-class LocalDateUserTypeTest extends Specification {
+class LocalDateUserTypeSpec extends Specification {
     LocalDateUserType localDateUserType = new LocalDateUserType();
 
 

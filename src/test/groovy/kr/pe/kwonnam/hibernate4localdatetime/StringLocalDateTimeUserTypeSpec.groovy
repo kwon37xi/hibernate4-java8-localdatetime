@@ -6,7 +6,7 @@ import java.sql.Types
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class StringLocalDateTimeUserTypeTest extends Specification {
+class StringLocalDateTimeUserTypeSpec extends Specification {
     StringLocalDateTimeUserType stringLocalDateTimeUserType = new StringLocalDateTimeUserType()
 
     Properties parameters = new Properties()

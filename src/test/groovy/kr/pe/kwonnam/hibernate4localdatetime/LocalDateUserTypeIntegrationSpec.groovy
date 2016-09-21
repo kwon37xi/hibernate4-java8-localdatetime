@@ -6,7 +6,7 @@ import java.time.LocalDate
 import java.time.Month
 
 
-class LocalDateUserTypeIntegrationTest extends AbstractUserTypeIntegrationSpec {
+class LocalDateUserTypeIntegrationSpec extends AbstractUserTypeIntegrationSpec {
 
     def "save and get"() {
         given:
