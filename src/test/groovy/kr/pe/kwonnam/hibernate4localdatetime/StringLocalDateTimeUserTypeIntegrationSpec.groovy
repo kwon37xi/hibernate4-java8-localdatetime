@@ -32,11 +32,9 @@ class StringLocalDateTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegra
 
         session.doWork({ Connection con ->
             Sql sql = new Sql(con)
-            sql.with {
-                def row = sql.firstRow("select created_at, updated_at from string_local_date_time_entities where id = 1")
-                assert row.created_at == '20160921235419'
-                assert row.updated_at == '1977/04/29 23:30:17.987'
-            }
+            def row = sql.firstRow("select created_at, updated_at from string_local_date_time_entities where id = 1")
+            assert row.created_at == '20160921235419'
+            assert row.updated_at == '1977/04/29 23:30:17.987'
         } as Work)
 
         readFromDb.id == 1L
@@ -49,13 +47,11 @@ class StringLocalDateTimeUserTypeIntegrationSpec extends AbstractUserTypeIntegra
         given:
         session.doWork({ Connection con ->
             Sql sql = new Sql(con)
-            sql.with {
-                sql.executeInsert("""
-                    INSERT INTO string_local_date_time_entities
-                        (id, title, created_at, updated_at)
-                    VALUES(1, 'null/empty test', '', null)
-""")
-            }
+            sql.executeInsert("""
+                INSERT INTO string_local_date_time_entities
+                    (id, title, created_at, updated_at)
+                VALUES(1, 'null/empty test', '', null)
+            """)
         } as Work)
 
         when:

@@ -26,17 +26,14 @@ class StringLocalDateUserTypeIntegrationSpec extends AbstractUserTypeIntegration
         session.evict(entity)
         StringLocalDateEntity readFromDb = session.get(StringLocalDateEntity, 1L)
 
-
         then:
         id == 1L
 
         session.doWork({ Connection con ->
             Sql sql = new Sql(con)
-            sql.with {
-                def row = sql.firstRow("select created_date, updated_date from string_local_date_entities where id = 1")
-                assert row.created_date == '20160921'
-                assert row.updated_date == '1977/04/29'
-            }
+            def row = sql.firstRow("select created_date, updated_date from string_local_date_entities where id = 1")
+            assert row.created_date == '20160921'
+            assert row.updated_date == '1977/04/29'
         } as Work)
 
         readFromDb.id == 1L
@@ -49,17 +46,15 @@ class StringLocalDateUserTypeIntegrationSpec extends AbstractUserTypeIntegration
         given:
         session.doWork({ Connection con ->
             Sql sql = new Sql(con)
-            sql.with {
-                sql.executeInsert("""
-                    INSERT INTO string_local_date_entities
-                        (id, title, created_date, updated_date)
-                    VALUES(1, 'null/empty test', '', null)
-""")
-            }
+            sql.executeInsert("""
+                INSERT INTO string_local_date_entities
+                    (id, title, created_date, updated_date)
+                VALUES(1, 'null/empty test', '', null)
+            """)
         } as Work)
 
         when:
-        StringLocalDateEntity readFromDb = session.get(StringLocalDateEntity, 1L);
+        StringLocalDateEntity readFromDb = session.get(StringLocalDateEntity, 1L)
 
         then:
         readFromDb.id == 1L
