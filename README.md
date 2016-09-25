@@ -9,7 +9,7 @@ If you are using JPA 2.1 or Hibernate 4.3 or later, You'd better use Attribute C
 * Java 8
 
 ## Setup
-Just copy the source codes into your project and use like the following examples.
+Just copy the source files into your project and use like the following examples.
 
 ## User Types for TIMESTAMP, DATETIME, DATE, TIME columns.
 
