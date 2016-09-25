@@ -8,11 +8,12 @@ If you are using JPA 2.1 or Hibernate 4.3 or later, You'd better use Attribute C
 * Hibernate 4 or later
 * Java 8
 
-## Dependency
+## Setup
+Just copy the source codes into your project and use like the following examples.
 
-## User Types for TIMESTAMP, DATETIME, DATE, TIME database columns.
+## User Types for TIMESTAMP, DATETIME, DATE, TIME columns.
 
-### LocalDateTimeUserType
+### [LocalDateTimeUserType](https://github.com/kwon37xi/hibernate4-java8-localdatetime/blob/master/src/main/java/kr/pe/kwonnam/hibernate4localdatetime/LocalDateTimeUserType.java)
 An user type for Java 8 [LocalDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html).
 
 ```java
@@ -20,10 +21,10 @@ An user type for Java 8 [LocalDateTime](https://docs.oracle.com/javase/8/docs/ap
 @Column(name = "created_at", nullable = false)
 private LocalDateTime createdAt;
 ```
-Beware LocalDateTime/Instant support nanoseconds, but java.util.Date only supports milliseconds.
-`LocaDateTimeUserType` changes LocalDateTime` to `java.util.Date` internally, so nanoseconds part will be truncated.
+Beware `LocalDateTime/Instant` support nanoseconds, but `java.util.Date` only supports milliseconds.
+`LocaDateTimeUserType` changes `LocalDateTime` to `java.util.Date` internally, so nanoseconds part will be truncated.
 
-### LocalDateUserType
+### [LocalDateUserType](https://github.com/kwon37xi/hibernate4-java8-localdatetime/blob/master/src/main/java/kr/pe/kwonnam/hibernate4localdatetime/LocalDateUserType.java)
 An user type for Java 8 [LocalDate](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html).
 
 ```java
@@ -32,7 +33,7 @@ An user type for Java 8 [LocalDate](https://docs.oracle.com/javase/8/docs/api/ja
 private LocalDate createdDate;
 ```
 
-### LocalTimeUserType
+### [LocalTimeUserType](https://github.com/kwon37xi/hibernate4-java8-localdatetime/blob/master/src/main/java/kr/pe/kwonnam/hibernate4localdatetime/LocalTimeUserType.java)
 An user type for Java 8 [LocalTime](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html).
 
 ```java
@@ -42,9 +43,9 @@ private LocalTime createdTime;
 ```
 
 ## UserTypes for VARCHAR(STRING) columns.
-Because this user type need to parse/format string to LocalDateTime, you need to set [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html) pattern.
+Because this user types need to parse/format string to `LocalDateTime/Date/Time`, you need to set [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html) pattern.
 
-### StringLocalDateTimeUserType
+### [StringLocalDateTimeUserType](https://github.com/kwon37xi/hibernate4-java8-localdatetime/blob/master/src/main/java/kr/pe/kwonnam/hibernate4localdatetime/StringLocalDateTimeUserType.java)
 An user type for Java 8 [LocalDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html) with a VARCHAR(String) column.
 
 ```java
@@ -58,7 +59,7 @@ An user type for Java 8 [LocalDateTime](https://docs.oracle.com/javase/8/docs/ap
 private LocalDateTime createdAt;
 ```
 
-### StringLocalDateUserType
+### [StringLocalDateUserType](https://github.com/kwon37xi/hibernate4-java8-localdatetime/blob/master/src/main/java/kr/pe/kwonnam/hibernate4localdatetime/StringLocalDateUserType.java)
 An user type for Java 8 [LocalDate](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html).
 
 ```java
@@ -72,7 +73,7 @@ An user type for Java 8 [LocalDate](https://docs.oracle.com/javase/8/docs/api/ja
 private LocalDate createdDate;
 ```
 
-### StringLocalTimeUserType
+### [StringLocalTimeUserType](https://github.com/kwon37xi/hibernate4-java8-localdatetime/blob/master/src/main/java/kr/pe/kwonnam/hibernate4localdatetime/StringLocalTimeUserType.java)
 An user type for Java 8 [LocalTime](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html).
 
 ```java
