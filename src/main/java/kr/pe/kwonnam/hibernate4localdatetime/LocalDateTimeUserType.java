@@ -19,7 +19,8 @@ import java.util.Objects;
 /**
  * <p>LocalDateTime Hibernate User Type.</p>
  * <p>
- * <em>Beware LocalDateTime/Instant support nano seconds, but java.util.Date only supports milliseconds.</em>
+ * <em>Beware LocalDateTime/Instant support nanoseconds, but java.util.Date only supports milliseconds.</em>
+ * <em><code>LocaDateTimeUserType</code> changes <code>LocalDateTime</code> to <code>java.util.Date</code> internally, so nanoseconds part will be truncated.</em>
  * </p>
  *
  * @see LocalDateTime
