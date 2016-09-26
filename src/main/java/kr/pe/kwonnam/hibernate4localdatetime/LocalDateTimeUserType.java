@@ -28,7 +28,7 @@ import java.util.Objects;
  * @see Date#from(Instant)
  * @see Instant
  */
-public class LocalDateTimeUserType implements EnhancedUserType, Serializable {
+public class LocalDateTimeUserType implements EnhancedUserType {
     private static final int SQL_TYPE = Types.TIMESTAMP;
 
     @Override

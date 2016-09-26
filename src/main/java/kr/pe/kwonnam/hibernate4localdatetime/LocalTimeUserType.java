@@ -12,7 +12,7 @@ import java.util.Objects;
 
 /**
  * <p>LocalTime Hibernate User Type.</p>
- *
+ * <p>
  * <p>
  * <em>Beware LocalTime supports nanoseconds, but nanoseconds will be truncated when it is converted to java.sql.Time.</em>
  * </p>
@@ -20,7 +20,7 @@ import java.util.Objects;
  * @see java.time.LocalTime
  * @see java.sql.Time
  */
-public class LocalTimeUserType implements EnhancedUserType, Serializable {
+public class LocalTimeUserType implements EnhancedUserType {
     private static final int SQL_TYPE = Types.TIME;
 
     @Override

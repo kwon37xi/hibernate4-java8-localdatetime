@@ -22,13 +22,17 @@ import java.util.Properties;
  *
  * @see LocalDate
  */
-public class StringLocalDateUserType implements EnhancedUserType, ParameterizedType, Serializable {
-    /** Date format pattern parameter name **/
+public class StringLocalDateUserType implements EnhancedUserType, ParameterizedType {
+    /**
+     * Date format pattern parameter name
+     **/
     public static final String PARAM_PATTERN = "pattern";
 
     public static final int SQL_TYPE = Types.VARCHAR;
 
-    /** Date format pattern **/
+    /**
+     * Date format pattern
+     **/
     private String pattern;
 
     private DateTimeFormatter formatter;
@@ -58,7 +62,7 @@ public class StringLocalDateUserType implements EnhancedUserType, ParameterizedT
 
     @Override
     public int[] sqlTypes() {
-        return new int[] { SQL_TYPE };
+        return new int[]{SQL_TYPE};
     }
 
     @Override

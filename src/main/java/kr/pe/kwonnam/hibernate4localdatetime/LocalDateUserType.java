@@ -10,8 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Date;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -20,7 +20,7 @@ import java.util.Objects;
  * @see LocalDate
  * @see Date
  */
-public class LocalDateUserType implements EnhancedUserType, Serializable {
+public class LocalDateUserType implements EnhancedUserType {
     private static final int SQL_TYPE = Types.DATE;
 
     @Override
